@@ -8,9 +8,9 @@ import ism.ouzeon.Core.iViews;
 import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Etudiant;
 import ism.ouzeon.Entities.Pavillon;
-import ism.ouzeon.RepositorieDB.ChambreRepositorie;
-import ism.ouzeon.RepositorieDB.EtudiantRepositorie;
-import ism.ouzeon.RepositorieDB.PavillonRepositorie;
+import ism.ouzeon.Repositories.ChambreRepositorie;
+import ism.ouzeon.Repositories.EtudiantRepositorie;
+import ism.ouzeon.Repositories.PavillonRepositorie;
 import ism.ouzeon.Services.ChambreService;
 import ism.ouzeon.Services.EtudiantService;
 import ism.ouzeon.Services.PavillonService;
@@ -78,18 +78,18 @@ public class Main {
 
           Etudiant etudiant=etudiantVue.give();
           Chambre chambre=chambreVue.give();
-          etudiantRepositorie.affecter(etudiant, chambre);
-          if (etudiantRepositorie.affecter(etudiant, chambre)==false) {
-            System.out.println("l'etudiant n'est pas loge");
-          }
+          etudiantService.affecter(etudiant, chambre);
+          // if (etudiantService.affecter(etudiant, chambre)==false) {
+          //   System.out.println("l'etudiant n'est pas loge");
+          // }
 
         }
 
         case 10 -> {
-          chambreVue.affiche(chambreService.getChambresPavillon(pavillonVue.give().getId()));
+          chambreVue.affiche(pavillonService.getChambresPavillon(pavillonVue.give().getId()));
         }
         case 11 -> {
-          etudiantVue.affiche(etudiantService.getEtudiantChambres(chambreVue.give().getId()));
+          etudiantVue.affiche(chambreService.getEtudiantChambres(chambreVue.give().getId()));
         }
         case 12 -> {
           scanner.nextLine();

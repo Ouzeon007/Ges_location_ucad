@@ -4,6 +4,7 @@ import java.util.List;
 
 import ism.ouzeon.Core.iRepositorie;
 import ism.ouzeon.Core.iService;
+import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Etudiant;
 
 public class EtudiantService implements iService<Etudiant> {
@@ -46,7 +47,7 @@ public class EtudiantService implements iService<Etudiant> {
     }
 
     @Override
-    public List<Etudiant> getChambresPavillon(int id) {
+    public List<Chambre> getChambresPavillon(int id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getChambresPavillon'");
     }
@@ -54,6 +55,11 @@ public class EtudiantService implements iService<Etudiant> {
     @Override
     public List<Etudiant> getEtudiantChambres(int id) {
         return etudiantRepositorie.getEtudiantChambres(id );
+    }
+
+    @Override
+    public boolean affecter(Etudiant etudiant, Chambre chambre) {
+        return etudiantRepositorie.affecter(etudiant, chambre);
     }
     
     

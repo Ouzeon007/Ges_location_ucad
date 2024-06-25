@@ -9,7 +9,6 @@ import ism.ouzeon.Entities.Etudiant;
 import ism.ouzeon.Entities.Loge;
 import ism.ouzeon.Entities.NonBoursier;
 import ism.ouzeon.Enums.TypeBourse;
-import ism.ouzeon.Enums.TypeChambre;
 
 public class EtudiantViews extends Views<Etudiant> {
 
@@ -202,13 +201,7 @@ public class EtudiantViews extends Views<Etudiant> {
 
   // }
 
-  public int tailleChambre(Chambre chambre) {
-    if (chambre.getType().compareTo(TypeChambre.Individuel) == 0) {
-      return 1;
-    } else {
-      return 2;
-    }
-  }
+  
 
 
   

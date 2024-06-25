@@ -3,6 +3,7 @@ package ism.ouzeon.Repositories;
 import java.util.ArrayList;
 import java.util.List;
 
+import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Pavillon;
 
 public class PavillonRepositorie extends Repositorie<Pavillon>{
@@ -44,6 +45,16 @@ public class PavillonRepositorie extends Repositorie<Pavillon>{
     }
     return null;
   }
+  public Pavillon retrouverByid(int id) {
+    for (Pavillon pavillon : Pavillons) {
+      if (pavillon != null) {
+        if (pavillon.getId() == id) {
+          return pavillon;
+        }
+      }
+    }
+    return null;
+  }
 
   public boolean update(Pavillon pavillon) {
     for (Pavillon p : Pavillons) {
@@ -55,5 +66,14 @@ public class PavillonRepositorie extends Repositorie<Pavillon>{
       }
     }
     return false;
+  }
+  
+  @Override
+  public List<Chambre> getChambresPavillon(int id) {
+    Pavillon pavillon = retrouverByid(id);
+    if (pavillon != null) {
+      return pavillon.getTabChambre();
+    }
+    return null;
   }
 }

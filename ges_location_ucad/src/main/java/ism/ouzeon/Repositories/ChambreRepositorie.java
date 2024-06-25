@@ -21,6 +21,16 @@ public class ChambreRepositorie extends Repositorie<Chambre> {
     }
     return null;
   }
+  public Chambre retrouverByid(int id) {
+    for (Chambre chambre : Chambres) {
+      if (chambre != null) {
+        if (chambre.getId() == id) {
+          return chambre;
+        }
+      }
+    }
+    return null;
+  }
 
   @Override
   public boolean save(Chambre chambre) {
@@ -76,5 +86,14 @@ public class ChambreRepositorie extends Repositorie<Chambre> {
       }
     }
     return true;
+  }
+
+    @Override
+  public List<Etudiant> getEtudiantChambres(int id) {
+    Chambre chambre = retrouverByid(id);
+    if (chambre != null) {
+      return chambre.getTabEtudiants();
+    }
+    return null;
   }
 }

@@ -46,14 +46,21 @@ public class ChambreService implements iService<Chambre>{
         return true;
     }
 
-    public List<Chambre> getChambresPavillon(int id ) {
-        return chambreRepositorie.getChambresPavillon(id);
+    @Override
+    public List<Etudiant> getEtudiantChambres(int id) {
+        return chambreRepositorie.getEtudiantChambres(id);
     }
 
     @Override
-    public List<Etudiant> getEtudiantChambres(int id) {
+    public boolean affecter(Etudiant etudiant, Chambre chambre) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEtudiantChambres'");
+        throw new UnsupportedOperationException("Unimplemented method 'affecter'");
+    }
+
+    @Override
+    public List<Chambre> getChambresPavillon(int id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getChambresPavillon'");
     }
 
     

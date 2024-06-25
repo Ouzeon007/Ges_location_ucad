@@ -8,7 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Pavillon;
+import ism.ouzeon.Enums.Etat;
+import ism.ouzeon.Enums.TypeChambre;
 
 public class PavillonRepositorie extends Repositorie<Pavillon> {
 
@@ -117,8 +120,33 @@ public class PavillonRepositorie extends Repositorie<Pavillon> {
     }
     return nbre == 0;
   }
-  
 
+  @Override
+ public List<Chambre> getChambresPavillon(int id) {
+    List<Chambre> chambres = new ArrayList<>();
+    Connection conn = null;
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ges_chambre_ucad", "root", "");
+      Statement statement = conn.createStatement();
+      ResultSet rs = statement.executeQuery(String.format("SELECT * FROM `chambre` WHERE `pavillonId`= %d", id));
+      while (rs.next()) {
+        Chambre ch = new Chambre();
+        ch.setId(rs.getInt("id"));
+        ch.setNumero(rs.getString("numero"));
+        ch.setNumEtage(rs.getInt("numEtage"));
+        ch.setType(TypeChambre.getValue(rs.getString("type")));
+        ch.setEtat(Etat.getValue(rs.getString("etat")));
+        chambres.add(ch);
+      }
+      System.out.println("Connexion Bd etablie");
+    } catch (ClassNotFoundException e) {
+      System.out.println("Erreur de chargement du Driver");
+    } catch (SQLException e) {
+      System.out.println("Erreur de Connexion a votre BD");
+    }
+    return chambres;
+  }
 
 
 

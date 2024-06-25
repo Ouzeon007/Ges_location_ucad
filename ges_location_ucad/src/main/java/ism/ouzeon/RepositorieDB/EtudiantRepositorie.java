@@ -249,33 +249,7 @@ public class EtudiantRepositorie extends Repositorie<Etudiant> {
 
   }
 
-  @Override
-  public List<Etudiant> getEtudiantChambres(int id) {
-    List<Etudiant> etudiants = new ArrayList<>();
-    Connection conn = null;
-    try {
-      Class.forName("com.mysql.cj.jdbc.Driver");
-      conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ges_chambre_ucad", "root", "");
-      Statement statement = conn.createStatement();
-      ResultSet rs = statement.executeQuery(String.format("SELECT * FROM `etudiant` WHERE `chambreId`= %d", id));
-      while (rs.next()) {
-        Etudiant etudiant = new Etudiant();
-        etudiant.setMatricule(rs.getString("matricule"));
-        etudiant.setNom(rs.getString("nom"));
-        etudiant.setPrenom(rs.getString("prenom"));
-        etudiant.setEmail(rs.getString("email"));
-        etudiant.setTelephone(rs.getString("telephone"));
-        etudiant.setDateNaiss(rs.getDate("dateNaiss").toLocalDate());
-        etudiants.add(etudiant);
-      }
-      System.out.println("Connexion Bd etablie");
-    } catch (ClassNotFoundException e) {
-      System.out.println("Erreur de chargement du Driver");
-    } catch (SQLException e) {
-      System.out.println("Erreur de Connexion a votre BD");
-    }
-    return etudiants;
-  }
+
 }
 
 // public Boursier selectBoursier(ResultSet rs) {

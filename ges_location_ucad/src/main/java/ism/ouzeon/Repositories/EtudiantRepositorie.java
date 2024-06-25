@@ -3,7 +3,11 @@ package ism.ouzeon.Repositories;
 import java.util.ArrayList;
 import java.util.List;
 
+import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Etudiant;
+import ism.ouzeon.Entities.Loge;
+import ism.ouzeon.Enums.Etat;
+import ism.ouzeon.Enums.TypeChambre;
 
 public class EtudiantRepositorie extends Repositorie<Etudiant> {
 
@@ -27,8 +31,6 @@ public class EtudiantRepositorie extends Repositorie<Etudiant> {
     }
   }
 
-  
-
   @Override
   public List<Etudiant> selectAll() {
     return Etudiants;
@@ -50,4 +52,36 @@ public class EtudiantRepositorie extends Repositorie<Etudiant> {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'update'");
   }
+
+  @Override
+  public boolean affecter(final Etudiant etudiant, final Chambre chambre) {
+
+    if (etudiant instanceof Loge) {
+      if (chambre.getEtat() == Etat.Archiver) {
+        System.out.println("la chambre est archiver");
+        return false;
+      } if (chambre.getTabEtudiants().size() < tailleChambre(chambre)) {
+        chambre.add(etudiant);
+        ((Loge) etudiant).setChambre(chambre);
+        return true;
+      } else {
+        System.out.println("la chambre est pleine");
+        return false;
+      }
+    } else {
+      System.out.println("cet etudiant n'est pas loge");
+      return false;
+    }
+  }
+
+  public int tailleChambre(Chambre chambre) {
+    if (chambre.getType().compareTo(TypeChambre.Individuel) == 0) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+
+
+
 }

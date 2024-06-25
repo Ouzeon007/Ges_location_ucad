@@ -2,7 +2,6 @@ package ism.ouzeon.Entities;
 
 import java.time.LocalDate;
 
-import ism.ouzeon.Enums.TypeBourse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
