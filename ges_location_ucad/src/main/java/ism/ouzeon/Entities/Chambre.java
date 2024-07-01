@@ -35,7 +35,6 @@ public class Chambre {
 
   @Override
   public String toString() {
-    return "Chambre [numero=" + numero + ", numEtage=" + numEtage + ", type=" + type + ", etat=" + etat + ", pavillon="
-        + pavillon + "]";
+    return "Chambre [numero=" + numero + ", numEtage=" + numEtage + ", type=" + type + ", etat=" + etat + "]";
   }
 }

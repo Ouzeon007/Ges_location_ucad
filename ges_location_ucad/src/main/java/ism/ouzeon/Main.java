@@ -8,9 +8,9 @@ import ism.ouzeon.Core.iViews;
 import ism.ouzeon.Entities.Chambre;
 import ism.ouzeon.Entities.Etudiant;
 import ism.ouzeon.Entities.Pavillon;
-import ism.ouzeon.Repositories.ChambreRepositorie;
-import ism.ouzeon.Repositories.EtudiantRepositorie;
-import ism.ouzeon.Repositories.PavillonRepositorie;
+import ism.ouzeon.RepositorieDB.ChambreRepositorie;
+import ism.ouzeon.RepositorieDB.EtudiantRepositorie;
+import ism.ouzeon.RepositorieDB.PavillonRepositorie;
 import ism.ouzeon.Services.ChambreService;
 import ism.ouzeon.Services.EtudiantService;
 import ism.ouzeon.Services.PavillonService;
@@ -76,12 +76,12 @@ public class Main {
 
         case 9 -> {
 
-          Etudiant etudiant=etudiantVue.give();
-          Chambre chambre=chambreVue.give();
+          Etudiant etudiant = etudiantVue.give();
+          Chambre chambre = chambreVue.give();
           etudiantService.affecter(etudiant, chambre);
-          // if (etudiantService.affecter(etudiant, chambre)==false) {
-          //   System.out.println("l'etudiant n'est pas loge");
-          // }
+          if (etudiantService.affecter(etudiant, chambre)==false) {
+          System.out.println("l'etudiant n'est pas loge");
+          }
 
         }
 

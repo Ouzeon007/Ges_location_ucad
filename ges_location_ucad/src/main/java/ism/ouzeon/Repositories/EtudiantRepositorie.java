@@ -54,7 +54,7 @@ public class EtudiantRepositorie extends Repositorie<Etudiant> {
   }
 
   @Override
-  public boolean affecter(final Etudiant etudiant, final Chambre chambre) {
+  public boolean affecter( Etudiant etudiant,  Chambre chambre) {
 
     if (etudiant instanceof Loge) {
       if (chambre.getEtat() == Etat.Archiver) {
